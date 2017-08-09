@@ -8,17 +8,14 @@
 class Easy_Primary_Category_Admin_Tests extends WP_UnitTestCase {
 
 	private $easy_primary_category_admin;
-	private $user_id;
 
 	/**
 	 * Setting up the test set
 	 */
 	function setUp() {
 		parent::setUp();
-
-		$this->user_id						 = $this->factory->user->create( array( 'role' => 'administrator' ) );
-		wp_set_current_user( $this->user_id );
-		set_current_screen( 'edit-post' );
+		
+		require_once EPC_PATH . 'admin/class-easy-primary-category-admin.php';
 		$this->easy_primary_category_admin	 = Easy_Primary_Category_Admin::get_instance();
 	}
 
