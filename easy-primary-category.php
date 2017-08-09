@@ -1,0 +1,34 @@
+<?php
+
+/*
+  Plugin Name: Easy Primary Category
+  Plugin URI:  https://gagan0123.com/
+  Description: Allows you to choose primary category for posts and custom post types
+  Version:     0.1
+  Author:      Gagan Deep Singh
+  Author URI:  https://gagan0123.com
+  License:     GPLv2
+  License URI: https://www.gnu.org/licenses/gpl-2.0.html
+  Text Domain: easy_primary_category
+  Domain Path: /languages
+ */
+
+// If this file is called directly, abort.
+if ( !defined( 'ABSPATH' ) ) {
+	die;
+}
+
+define( 'EPC_PREFIX', 'pc' );
+define( 'EPC_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
+
+/**
+ * The core plugin class
+ */
+require_once EPC_PATH . 'includes/class-easy-primary-category.php';
+
+/**
+ * Load the admin class if its the admin dashboard
+ */
+if ( is_admin() ) {
+	require_once EPC_PATH . 'admin/class-easy-primary-category-admin.php';
+}
