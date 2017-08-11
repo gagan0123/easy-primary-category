@@ -1,0 +1,22 @@
+{
+    "name": "easy-primary-category",
+    "version": "1.0.0",
+    "main": "easy-primary-category.php",
+    "repository": {
+        "type": "git",
+        "url": "https://git.gagan.pro/10up/easy-primary-category"
+    },
+    "keywords": [
+        "wordpress"
+    ],
+    "author": "Gagan Deep Singh",
+    "license": "GPL-2.0",
+    "devDependencies": {
+        "grunt": "^1.0.1",
+        "grunt-contrib-sass": "^1.0.0",
+        "grunt-contrib-uglify": "^3.0.1",
+        "grunt-contrib-watch": "^1.0.0",
+        "grunt-wp-readme-to-markdown": "^2.0.1"
+    },
+    "dependencies": {}
+}
