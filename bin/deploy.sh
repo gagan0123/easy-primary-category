@@ -170,8 +170,13 @@ bin
 map.conf
 nginx.log
 tests
+Gruntfile.js
+package.json
 phpunit.xml
 phpunit.xml.dist
+package-lock.json
+node_modules
+.sass-cache
 .gitlab-ci.yml
 .travis.yml" "$SVNPATH/trunk/"
 
