@@ -48,6 +48,7 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		public function register_hooks() {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'save_post', array( $this, 'save_primary_terms' ) );
+			add_action( 'admin_footer', array( $this, 'admin_footer' ), 10 );
 		}
 
 		/**
@@ -58,6 +59,7 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		 * @return void
 		 */
 		public function enqueue_scripts() {
+			
 			//Return if the its not post edit or add screen
 			if ( !$this->is_post_edit() ) {
 				return;
@@ -76,6 +78,40 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 			//Enqueueing our admin styles and scripts
 			wp_enqueue_style( 'epc-taxonomy-metabox' );
 			wp_enqueue_script( 'epc-taxonomy-metabox' );
+		}
+
+		/**
+		 * Add primary term JS templates in footer 
+		 * 
+		 * @since 0.1
+		 * 
+		 * @return void
+		 */
+		public function admin_footer() {
+
+			//Return if the its not post edit or add screen
+			if ( !$this->is_post_edit() ) {
+				return;
+			}
+
+			$taxonomies = $this->get_primary_term_taxonomies();
+
+			// Enqueue only if there are taxonomies that need a primary term.
+			if ( !empty( $taxonomies ) ) {
+				$this->include_js_templates();
+			}
+		}
+
+		/**
+		 * Include Underscore.js style template for buttons and input fields
+		 * on post edit and post add screens.
+		 * 
+		 * @since 0.1
+		 * 
+		 * @return void
+		 */
+		protected function include_js_templates() {
+			include_once EPC_PATH . 'admin/templates/js-templates-primary-term.php';
 		}
 
 		/**
