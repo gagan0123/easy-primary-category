@@ -18,7 +18,8 @@ if ( !class_exists( 'Easy_Primary_Category' ) ) {
 		protected static $instance = null;
 
 		function __construct() {
-			
+			$this->register_hooks();
+			$this->require_files();
 		}
 
 		/**
@@ -57,7 +58,7 @@ if ( !class_exists( 'Easy_Primary_Category' ) ) {
 		 * @return void
 		 */
 		public function register_hooks() {
-			
+			add_filter( 'post_link_category', array( $this, 'post_link_category' ), 10, 3 );
 		}
 
 		/**
@@ -72,7 +73,14 @@ if ( !class_exists( 'Easy_Primary_Category' ) ) {
 		 * @return object|array|WP_Error|null The category we want to use for the post link.
 		 */
 		public function post_link_category( $category, $categories = null, $post = null ) {
-			
+			$post				 = get_post( $post );
+			$primary_category	 = $this->get_primary_category( $post );
+
+			if ( false !== $primary_category && $primary_category !== $category->cat_ID ) {
+				$category = get_category( $primary_category );
+			}
+
+			return $category;
 		}
 
 		/**
@@ -85,9 +93,18 @@ if ( !class_exists( 'Easy_Primary_Category' ) ) {
 		 * @return int primary category id
 		 */
 		protected function get_primary_category( $post = null ) {
-			
+			$post = get_post( $post );
+
+			if ( $post === null ) {
+				return false;
+			}
+
+			$primary_term = new Easy_Primary_Term( 'category', $post->ID );
+
+			return $primary_term->get_primary_term();
 		}
 
 	}
 
+	Easy_Primary_Category::get_instance();
 }

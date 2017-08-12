@@ -18,7 +18,7 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		protected static $instance = null;
 
 		function __construct() {
-			
+			$this->register_hooks();
 		}
 
 		/**
@@ -46,16 +46,36 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		 * @return void
 		 */
 		public function register_hooks() {
-			
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+			add_action( 'save_post', array( $this, 'save_primary_terms' ) );
 		}
 
 		/**
 		 * Enqueues all the assets needed for the primary term interface
+		 * 
+		 * @since 0.1
 		 *
 		 * @return void
 		 */
 		public function enqueue_scripts() {
-			
+			//Return if the its not post edit or add screen
+			if ( !$this->is_post_edit() ) {
+				return;
+			}
+
+			// Enqueue only if there are taxonomies that need a primary term.
+			$taxonomies = $this->get_primary_term_taxonomies();
+			if ( empty( $taxonomies ) ) {
+				return;
+			}
+
+			//Registering our admin styles and scripts
+			wp_register_style( 'epc-taxonomy-metabox', EPC_URL . 'admin/css/epc-taxonomy-metabox.min.css', array(), EPC_VERSION );
+			wp_register_script( 'epc-taxonomy-metabox', EPC_URL . 'admin/js/epc-taxonomy-metabox.min.js', array( 'jquery' ), EPC_VERSION, true );
+
+			//Enqueueing our admin styles and scripts
+			wp_enqueue_style( 'epc-taxonomy-metabox' );
+			wp_enqueue_script( 'epc-taxonomy-metabox' );
 		}
 
 		/**
@@ -78,6 +98,8 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		 * @since 0.1
 		 *
 		 * @param int $post_id Post ID to save primary terms for.
+		 * 
+		 * @return void
 		 */
 		public function save_primary_terms( $post_id ) {
 			
@@ -94,7 +116,9 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		 * @return int primary term id
 		 */
 		protected function get_primary_term( $taxonomy_name ) {
-			
+			$primary_term = new Easy_Primary_Term( $taxonomy_name, $this->get_current_id() );
+
+			return $primary_term->get_primary_term();
 		}
 
 		/**
@@ -107,7 +131,20 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		 * @return array
 		 */
 		protected function get_primary_term_taxonomies( $post_id = null ) {
-			
+
+			if ( null === $post_id ) {
+				$post_id = $this->get_current_id();
+			}
+
+			if ( false !== ( $taxonomies = wp_cache_get( 'primary_term_taxonomies_' . $post_id, 'epc' ) ) ) {
+				return $taxonomies;
+			}
+
+			$taxonomies = $this->generate_primary_term_taxonomies( $post_id );
+
+			wp_cache_set( 'primary_term_taxonomies_' . $post_id, $taxonomies, 'epc' );
+
+			return $taxonomies;
 		}
 
 		/**
@@ -120,9 +157,62 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		 * @return array
 		 */
 		protected function generate_primary_term_taxonomies( $post_id ) {
-			
+			$post_type		 = get_post_type( $post_id );
+			$all_taxonomies	 = get_object_taxonomies( $post_type, 'objects' );
+			$all_taxonomies	 = array_filter( $all_taxonomies, array( $this, 'filter_hierarchical_taxonomies' ) );
+
+			/**
+			 * Filters which taxonomies for which the user can choose the primary term.
+			 *
+			 * @api array    $taxonomies An array of taxonomy objects that are primary_term enabled.
+			 *
+			 * @param string $post_type      The post type for which to filter the taxonomies.
+			 * @param array  $all_taxonomies All taxonomies for this post types, even ones that don't have primary term
+			 *                               enabled.
+			 */
+			$taxonomies = (array) apply_filters( 'easy_primary_term_taxonomies', $all_taxonomies, $post_type, $all_taxonomies );
+
+			return $taxonomies;
+		}
+
+		/**
+		 * Checks if the current screen is post edit or new post screen
+		 * 
+		 * @since 0.1
+		 * 
+		 * @return bool True if its post edit or new post screen,
+		 * 				False if anything else
+		 */
+		public function is_post_edit() {
+			global $pagenow;
+			return 'post.php' === $pagenow || 'post-new.php' === $pagenow;
+		}
+
+		/**
+		 * Get the current post ID.
+		 * 
+		 * @since 0.1
+		 *
+		 * @return integer The post ID.
+		 */
+		protected function get_current_id() {
+			return filter_input( INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT );
+		}
+
+		/**
+		 * Returns whether or not a taxonomy is hierarchical
+		 * 
+		 * @since 0.1
+		 *
+		 * @param stdClass $taxonomy Taxonomy object.
+		 *
+		 * @return bool Whether or not a taxonomy is hierarchical
+		 */
+		private function filter_hierarchical_taxonomies( $taxonomy ) {
+			return (bool) $taxonomy->hierarchical;
 		}
 
 	}
 
+	Easy_Primary_Category_Admin::get_instance();
 }
