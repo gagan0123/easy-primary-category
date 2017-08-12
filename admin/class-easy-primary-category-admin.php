@@ -9,7 +9,11 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 	class Easy_Primary_Category_Admin {
 
 		/**
-		 * @var Easy_Primary_Category_Admin The instance of the class Easy_Primary_Category_Admin
+		 * The instance of the class Easy_Primary_Category_Admin
+		 * 
+		 * @since 0.1
+		 * 
+		 * @var Easy_Primary_Category_Admin
 		 */
 		protected static $instance = null;
 
@@ -56,6 +60,8 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 
 		/**
 		 * Save the primary term for a specific taxonomy
+		 * 
+		 * @since 0.1
 		 *
 		 * @param int     $post_id  Post ID to save primary term for.
 		 * @param WP_Term $taxonomy Taxonomy to save primary term for.
@@ -97,6 +103,7 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		 * @since 0.1
 		 *
 		 * @param int $post_id Default current post ID.
+		 * 
 		 * @return array
 		 */
 		protected function get_primary_term_taxonomies( $post_id = null ) {
