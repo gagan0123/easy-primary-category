@@ -37,7 +37,8 @@ class Easy_Primary_Term {
 	 * @param int    $post_id       The post ID to which this term belongs
 	 */
 	public function __construct( $taxonomy_name, $post_id ) {
-		
+		$this->taxonomy_name = $taxonomy_name;
+		$this->post_id		 = $post_id;
 	}
 
 	/**
@@ -48,7 +49,16 @@ class Easy_Primary_Term {
 	 * @return int|bool Primary Term ID or false if no Primary Term.
 	 */
 	public function get_primary_term() {
-		
+		$primary_term = get_post_meta( $this->post_id, 'epc_primary_' . $this->taxonomy_name, true );
+
+		$terms = $this->get_terms();
+
+		if ( !in_array( $primary_term, wp_list_pluck( $terms, 'term_id' ) ) ) {
+			$primary_term = false;
+		}
+
+		$primary_term = (int) $primary_term;
+		return ( $primary_term ) ? ( $primary_term ) : false;
 	}
 
 	/**
@@ -61,7 +71,7 @@ class Easy_Primary_Term {
 	 * @return void
 	 */
 	public function set_primary_term( $new_primary_term ) {
-		
+		update_post_meta( $this->post_id, 'epc_primary_' . $this->taxonomy_name, $new_primary_term );
 	}
 
 	/**
@@ -73,7 +83,13 @@ class Easy_Primary_Term {
 	 * @return array Return the terms for the current post ID.
 	 */
 	public function get_terms() {
-		
+		$terms = get_the_terms( $this->post_id, $this->taxonomy_name );
+
+		if ( !is_array( $terms ) ) {
+			$terms = array();
+		}
+
+		return $terms;
 	}
 
 }
