@@ -21,5 +21,5 @@ them in frontend.
 
 == Changelog ==
 
-= 1.0 =
+= 0.1 =
 * Initial Public Release
