@@ -1,0 +1,46 @@
+.easy-primary-term > label,
+.easy-is-primary-term {
+    font-weight: 600;
+}
+
+.easy-primary-term > .easy-make-primary-term,
+.easy-term-unchecked > .easy-make-primary-term {
+    display: none;
+}
+
+.easy-non-primary-term > .easy-is-primary-term,
+.easy-term-unchecked > .easy-is-primary-term {
+    display: none;
+}
+
+.easy-make-primary-term,
+.easy-is-primary-term {
+    float: right;
+}
+
+.easy-primary-term:before,
+.easy-primary-term:after,
+.easy-non-primary-term:before,
+.easy-non-primary-term:after {
+    display: table;
+    content: "";
+}
+
+.easy-primary-term:after,
+.easy-non-primary-term:after {
+    clear: both;
+}
+
+.easy-make-primary-term {
+    margin: 4px 0 0 0;
+    padding: 0;
+    border: none;
+    color: #0073aa;
+    background: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.easy-make-primary-term:hover {
+    color: #00a0d2;
+}
