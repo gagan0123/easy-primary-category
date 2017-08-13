@@ -59,7 +59,7 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		 * @return void
 		 */
 		public function enqueue_scripts() {
-			
+
 			//Return if the its not post edit or add screen
 			if ( !$this->is_post_edit() ) {
 				return;
@@ -78,6 +78,13 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 			//Enqueueing our admin styles and scripts
 			wp_enqueue_style( 'epc-taxonomy-metabox' );
 			wp_enqueue_script( 'epc-taxonomy-metabox' );
+
+			//Formatting taxonomies for JS
+			$taxonomies	 = array_map( array( $this, 'map_taxonomies_for_js' ), $taxonomies );
+			$data		 = array(
+				'taxonomies' => $taxonomies,
+			);
+			wp_localize_script( 'epc-taxonomy-metabox', 'easyPrimaryCategory', $data );
 		}
 
 		/**
@@ -246,6 +253,44 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		 */
 		private function filter_hierarchical_taxonomies( $taxonomy ) {
 			return (bool) $taxonomy->hierarchical;
+		}
+
+		/**
+		 * Returns an array suitable for use in the javascript
+		 *
+		 * @param stdClass $taxonomy The taxonomy to map.
+		 *
+		 * @return array
+		 */
+		private function map_taxonomies_for_js( $taxonomy ) {
+			$primary_term = $this->get_primary_term( $taxonomy->name );
+
+			if ( empty( $primary_term ) ) {
+				$primary_term = '';
+			}
+
+			return array(
+				'title'		 => $taxonomy->labels->singular_name,
+				'name'		 => $taxonomy->name,
+				'primary'	 => $primary_term,
+				'terms'		 => array_map( array( $this, 'map_terms_for_js' ), get_terms( $taxonomy->name ) ),
+			);
+		}
+
+		/**
+		 * Returns an array suitable for use in the javascript
+		 * 
+		 * @since 0.1
+		 *
+		 * @param stdClass $term The term to map.
+		 *
+		 * @return array
+		 */
+		private function map_terms_for_js( $term ) {
+			return array(
+				'id'	 => $term->term_id,
+				'name'	 => $term->name,
+			);
 		}
 
 	}
