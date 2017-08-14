@@ -15,6 +15,9 @@ EXCLUDE_FOLDERS=(
     'README.md'
     'readme.sh'
     '.DS_Store'
+    'Gruntfile.js'
+    'package-lock.json'
+    'package.json'
 );
 EXCLUDE_STRING=""
 for i in "${EXCLUDE_FOLDERS[@]}"
