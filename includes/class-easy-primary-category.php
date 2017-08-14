@@ -51,6 +51,10 @@ if ( !class_exists( 'Easy_Primary_Category' ) ) {
 			require_once EPC_PATH . 'includes/class-easy-primary-term.php';
 			require_once EPC_PATH . 'includes/class-easy-primary-frontend.php';
 			require_once EPC_PATH . 'includes/frontend-wrappers.php';
+			if ( defined( 'WP_CLI' ) && WP_CLI ) {
+				require_once EPC_PATH . 'includes/class-easy-primary-cli.php';
+				WP_CLI::add_command( 'primary-category', 'Easy_Primary_CLI' );
+			}
 		}
 
 		/**
