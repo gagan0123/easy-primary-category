@@ -50,6 +50,7 @@ if ( !class_exists( 'Easy_Primary_Category' ) ) {
 		public function require_files() {
 			require_once EPC_PATH . 'includes/class-easy-primary-term.php';
 			require_once EPC_PATH . 'includes/class-easy-primary-frontend.php';
+			require_once EPC_PATH . 'includes/frontend-wrappers.php';
 		}
 
 		/**
