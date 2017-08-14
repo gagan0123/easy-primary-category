@@ -40,6 +40,19 @@ module.exports = function ( grunt ) {
 				}
 			}
 		},
+		makepot: {
+			target: {
+				options: {
+					domainPath: '/languages',
+					mainFile: 'easy-primary-category.php',
+					potFilename: 'easy-primary-category.pot',
+					type: 'wp-plugin',
+					potHeaders: {
+						poedit: false
+					}
+				}
+			}
+		},
 		watch: {
 			grunt: {
 				files: [ 'Gruntfile.js' ]
@@ -63,6 +76,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-contrib-sass' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
+	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 
 	grunt.registerTask( 'default', [
 		'watch'

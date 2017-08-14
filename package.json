@@ -1,6 +1,6 @@
 {
     "name": "easy-primary-category",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "easy-primary-category.php",
     "repository": {
         "type": "git",
@@ -16,6 +16,7 @@
         "grunt-contrib-sass": "^1.0.0",
         "grunt-contrib-uglify": "^3.0.1",
         "grunt-contrib-watch": "^1.0.0",
+        "grunt-wp-i18n": "^1.0.0",
         "grunt-wp-readme-to-markdown": "^2.0.1"
     },
     "dependencies": {}
