@@ -18,7 +18,6 @@ if ( !defined( 'ABSPATH' ) ) {
 	die;
 }
 
-define( 'EPC_PREFIX', 'pc' );
 define( 'EPC_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'EPC_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
 define( 'EPC_VERSION', '0.1' );
