@@ -132,7 +132,13 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		 * @return void
 		 */
 		protected function save_primary_term( $post_id, $taxonomy ) {
-			
+			$primary_term = filter_input( INPUT_POST, 'epc_primary_' . $taxonomy->name . '_term', FILTER_SANITIZE_NUMBER_INT );
+
+			// We accept an empty string here because we need to save that if no terms are selected.
+			if ( null !== $primary_term && check_admin_referer( 'save-primary-term', 'epc_primary_' . $taxonomy->name . '_nonce' ) ) {
+				$primary_term_object = new Easy_Primary_Term( $taxonomy->name, $post_id );
+				$primary_term_object->set_primary_term( $primary_term );
+			}
 		}
 
 		/**
@@ -145,7 +151,16 @@ if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		 * @return void
 		 */
 		public function save_primary_terms( $post_id ) {
-			
+			// Bail if this is a multisite installation and the site has been switched.
+			if ( is_multisite() && ms_is_switched() ) {
+				return;
+			}
+
+			$taxonomies = $this->get_primary_term_taxonomies( $post_id );
+
+			foreach ( $taxonomies as $taxonomy ) {
+				$this->save_primary_term( $post_id, $taxonomy );
+			}
 		}
 
 		/**
