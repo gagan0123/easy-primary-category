@@ -6,6 +6,11 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 if ( !class_exists( 'Easy_Primary_Category_Admin' ) ) {
 
+	/**
+	 * Handles the admin side interactions of the plugin
+	 * 
+	 * @since 0.1
+	 */
 	class Easy_Primary_Category_Admin {
 
 		/**

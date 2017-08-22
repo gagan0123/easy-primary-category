@@ -44,23 +44,16 @@ if [ "$NEWVERSION1" != "$NEWVERSION2" ]; then echo "Versions don't match. Exitin
 echo "Versions match in readme.txt and PHP file. Let's proceed..."
 
 cd $GITPATH
-#!/bin/bash
-
-
 
 # Variables List
 TITLE=$(head -n1 readme.txt)
 LICENSE=$(cat readme.txt | grep "License URI:" | awk -F// '{ print $2 }' |  cat readme.txt | grep "License URI:" | cut -d: -f2,3)
-#echo $TITLE $LICENSE
 
 # Remove Previous Files
 if [ -e /tmp/file ] || [ -e /tmp/file1 ] || [ -e /tmp/file2 ]
 then
         rm /tmp/file* &> /dev/null
 fi
-
-
-
 
 # Add Images
 curl -I $1/assets/banner-772x250.png 2> /dev/null | grep '200 OK' &> /dev/null
@@ -98,10 +91,8 @@ echo $LICENSE | grep 3.0
 if [ $? -eq 0 ] 
 then
         LICENSE="[GPL v3 or later] (http://www.gnu.org/licenses/gpl-3.0.html)"
-        #echo $LICENSE
 else
         LICENSE="[GPL v2 or later] ($LICENSE)"
-        #echo $LICENSE
 fi
 
 # Send License Details To Temp File

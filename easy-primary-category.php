@@ -9,7 +9,7 @@
   Author URI:  https://gagan0123.com
   License:     GPLv2
   License URI: https://www.gnu.org/licenses/gpl-2.0.html
-  Text Domain: easy_primary_category
+  Text Domain: easy-primary-category
   Domain Path: /languages
  */
 
@@ -18,9 +18,17 @@ if ( !defined( 'ABSPATH' ) ) {
 	die;
 }
 
-define( 'EPC_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
-define( 'EPC_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
-define( 'EPC_VERSION', '0.1' );
+if ( !defined( 'EPC_PATH' ) ) {
+	define( 'EPC_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
+}
+
+if ( !defined( 'EPC_URL' ) ) {
+	define( 'EPC_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
+}
+
+if ( !defined( 'EPC_VERSION' ) ) {
+	define( 'EPC_VERSION', '0.1' );
+}
 
 /**
  * The core plugin class

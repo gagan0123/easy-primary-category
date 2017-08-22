@@ -29,14 +29,14 @@ __( 'Make %1$s primary %2$s', 'easy-primary-category' ), '{{data.term}}', '{{dat
 );
 ?>
 
-	<span class="easy-is-primary-term" aria-hidden="true"><?php _e( 'Primary', 'easy-primary-category' ); ?></span>
+	<span class="easy-is-primary-term" aria-hidden="true"><?php esc_html_e( 'Primary', 'easy-primary-category' ); ?></span>
 </script>
 
 <script type="text/html" id="tmpl-primary-term-screen-reader">
 	<span class="screen-reader-text easy-primary-category-label"><?php
-		printf(
+		echo esc_html( sprintf(
 		/* translators: %s is the taxonomy title. This will be shown to screenreaders */
 		'(' . __( 'Primary %s', 'easy-primary-category' ) . ')', '{{data.taxonomy.title}}'
-		);
+		) );
 		?></span>
 </script>
