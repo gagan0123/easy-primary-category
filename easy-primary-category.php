@@ -4,7 +4,7 @@
   Plugin Name: Easy Primary Category
   Plugin URI:  https://gagan0123.com/
   Description: Allows you to choose primary category for posts and custom post types
-  Version:     0.1
+  Version:     1.0
   Author:      Gagan Deep Singh
   Author URI:  https://gagan0123.com
   License:     GPLv2
@@ -27,7 +27,7 @@ if ( !defined( 'EPC_URL' ) ) {
 }
 
 if ( !defined( 'EPC_VERSION' ) ) {
-	define( 'EPC_VERSION', '0.1' );
+	define( 'EPC_VERSION', '1.0' );
 }
 
 /**

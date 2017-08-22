@@ -1,11 +1,8 @@
 # Easy Primary Category #
-**Contributors:** [gagan0123](https://profiles.wordpress.org/gagan0123)  
-**Tags:** category, primary  
-**Requires at least:** 4.8  
-**Tested up to:** 4.8.1  
-**Stable tag:** 0.1  
-**License:** GPLv2  
-**License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
+
+* **Contributors:** [gagan0123] (http://profiles.wordpress.org/gagan0123),
+
+* **License:** [GPL v2 or later] ( https://www.gnu.org/licenses/gpl-2.0.html)
 
 Allows you to choose primary category for posts and custom post types
 
@@ -21,5 +18,8 @@ them in frontend.
 
 ## Changelog ##
 
-### 0.1 ###
-* Initial Public Release
+#### 1.0 ####
+* Initial public release
+
+#### 0.1 ####
+* Initial Development

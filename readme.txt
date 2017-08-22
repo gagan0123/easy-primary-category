@@ -1,9 +1,9 @@
 === Easy Primary Category ===
 Contributors: gagan0123
 Tags: category, primary
-Requires at least: 4.8
+Requires at least: 4.5
 Tested up to: 4.8.1
-Stable tag: 0.1
+Stable tag: 1.0
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,5 +21,8 @@ them in frontend.
 
 == Changelog ==
 
+= 1.0 =
+* Initial public release
+
 = 0.1 =
-* Initial Public Release
+* Initial Development
