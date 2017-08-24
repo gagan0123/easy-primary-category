@@ -26,7 +26,7 @@ if ( function_exists( 'epc_get_primary_term_posts' ) ) {
 	 * Assuming you want to fetch 10 published posts which have category ID 2
 	 * marked as primary category
 	 */
-	epc_get_primary_term_posts( 2, array(
+	$posts = epc_get_primary_term_posts( 2, array(
 		'post_status'	 => 'publish',
 		'posts_per_page' => 10,
 		'post_type'		 => 'post',
