@@ -17,6 +17,23 @@ When the permalink structure includes category, the category marked as Primary, 
 
 Works with custom post types and taxonomies as long as the taxonomy supports hierarchical structure. 
 
+### Developers' Notes ###
+
+If you want to fetch posts belonging to a particular term you can use this:
+```
+if ( function_exists( 'epc_get_primary_term_posts' ) ) {
+	/**
+	 * Assuming you want to fetch 10 published posts which have category ID 2
+	 * marked as primary category
+	 */
+	epc_get_primary_term_posts( 2, array(
+		'post_status'	 => 'publish',
+		'posts_per_page' => 10,
+		'post_type'		 => 'post',
+	) );
+}
+```
+
 ## Installation ##
 1. Add the plugin's folder in the WordPress' plugin directory.
 1. Activate the plugin.
