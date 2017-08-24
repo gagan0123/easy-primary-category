@@ -11,13 +11,24 @@ Allows you to choose primary category for posts and custom post types
 
 == Description ==
 
-Allows you to choose primary category for posts and custom post types and show
-them in frontend.
+Allows you to choose primary category for posts and custom post types.
+
+When the permalink structure includes category, the category marked as Primary, will be used for generating the permalink of the post.
+
+Works with custom post types and taxonomies as long as the taxonomy supports hierarchical structure. 
 
 == Installation ==
 1. Add the plugin's folder in the WordPress' plugin directory.
 1. Activate the plugin.
-1. Keep adding installation instructions based on the plugin
+1. Now you'll have the ability to make any category a primary category for the post
+
+== Frequently Asked Questions ==
+
+= Why I can't see the "Make Primary" button =
+The button is displayed only when more than one category is selected, try assigning other categories to the post, as soon as there's more than one category selected, the "Make Primary" button will appear.
+
+== Screenshots ==
+1. Click the "Make Primary" button to mark the category as primary.
 
 == Changelog ==
 
