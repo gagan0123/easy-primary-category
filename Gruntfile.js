@@ -5,6 +5,12 @@ module.exports = function ( grunt ) {
 		pkg: grunt.file.readJSON( 'package.json' ),
 		wp_readme_to_markdown: {
 			dist: {
+				options: {
+					screenshot_url: '<%= pkg.repository.url %>/raw/master/assets/{screenshot}.png',
+					post_convert: function ( file ) {
+						return "<img src='" + grunt.config.get( 'pkg' ).repository.url + "/raw/master/assets/icon-128x128.png' align='right' />\n\n" + file;
+					}
+				},
 				files: {
 					'README.md': 'readme.txt'
 				}
