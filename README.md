@@ -1,3 +1,5 @@
+<img src='https://git.gagan.pro/gagan0123/wp-org-plugins/easy-primary-category/raw/master/assets/icon-128x128.png' align='right' />
+
 # Easy Primary Category #
 **Contributors:** [gagan0123](https://profiles.wordpress.org/gagan0123)  
 **Tags:** category, primary  
@@ -45,7 +47,9 @@ if ( function_exists( 'epc_get_primary_term_posts' ) ) {
 The button is displayed only when more than one category is selected, try assigning other categories to the post, as soon as there's more than one category selected, the "Make Primary" button will appear.
 
 ## Screenshots ##
-1. Click the "Make Primary" button to mark the category as primary.
+### 1. Click the "Make Primary" button to mark the category as primary. ###
+![Click the "Make Primary" button to mark the category as primary.](https://git.gagan.pro/gagan0123/wp-org-plugins/easy-primary-category/raw/master/assets/screenshot-1.png)
+
 
 ## Changelog ##
 
