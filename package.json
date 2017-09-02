@@ -4,11 +4,14 @@
     "main": "easy-primary-category.php",
     "repository": {
         "type": "git",
-        "url": "https://git.gagan.pro/gagan0123/wp-org-plugins/easy-primary-category"
+        "url": "https://github.com/gagan0123/easy-primary-category"
     },
     "keywords": [
         "wordpress"
     ],
+    "bugs": {
+        "url": "https://wordpress.org/support/plugin/easy-primary-category"
+    },
     "author": "Gagan Deep Singh",
     "license": "GPL-2.0",
     "devDependencies": {

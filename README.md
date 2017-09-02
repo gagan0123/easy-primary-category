@@ -1,4 +1,4 @@
-<img src='https://git.gagan.pro/gagan0123/wp-org-plugins/easy-primary-category/raw/master/assets/icon-128x128.png' align='right' />
+<img src='https://github.com/gagan0123/easy-primary-category/raw/master/assets/icon-128x128.png' align='right' />
 
 # Easy Primary Category #
 **Contributors:** [gagan0123](https://profiles.wordpress.org/gagan0123)  
@@ -48,7 +48,7 @@ The button is displayed only when more than one category is selected, try assign
 
 ## Screenshots ##
 ### 1. Click the "Make Primary" button to mark the category as primary. ###
-![Click the "Make Primary" button to mark the category as primary.](https://git.gagan.pro/gagan0123/wp-org-plugins/easy-primary-category/raw/master/assets/screenshot-1.png)
+![Click the "Make Primary" button to mark the category as primary.](https://github.com/gagan0123/easy-primary-category/raw/master/assets/screenshot-1.png)
 
 
 ## Changelog ##
