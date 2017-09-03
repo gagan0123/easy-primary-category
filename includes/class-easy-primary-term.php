@@ -54,7 +54,7 @@ class Easy_Primary_Term {
 	 * @return int|bool Primary Term ID or false if no Primary Term.
 	 */
 	public function get_primary_term() {
-		$primary_term = get_post_meta( $this->post_id, 'epc_primary_' . $this->taxonomy_name, true );
+		$primary_term = (int) get_post_meta( $this->post_id, 'epc_primary_' . $this->taxonomy_name, true );
 
 		$terms = $this->get_terms();
 
@@ -62,7 +62,6 @@ class Easy_Primary_Term {
 			$primary_term = false;
 		}
 
-		$primary_term = (int) $primary_term;
 		return ( $primary_term ) ? ( $primary_term ) : false;
 	}
 
