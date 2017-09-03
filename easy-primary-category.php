@@ -14,19 +14,19 @@
  */
 
 // If this file is called directly, abort.
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
-if ( !defined( 'EPC_PATH' ) ) {
+if ( ! defined( 'EPC_PATH' ) ) {
 	define( 'EPC_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 }
 
-if ( !defined( 'EPC_URL' ) ) {
+if ( ! defined( 'EPC_URL' ) ) {
 	define( 'EPC_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
 }
 
-if ( !defined( 'EPC_VERSION' ) ) {
+if ( ! defined( 'EPC_VERSION' ) ) {
 	define( 'EPC_VERSION', '1.0' );
 }
 

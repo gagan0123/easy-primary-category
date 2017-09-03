@@ -1,7 +1,7 @@
 <?php
 
 // If this file is called directly, abort.
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
@@ -12,25 +12,25 @@ class Easy_Primary_Term {
 
 	/**
 	 * The taxonomy to which this term belongs.
-	 * 
+	 *
 	 * @since 0.1
-	 * 
+	 *
 	 * @var string
 	 */
 	protected $taxonomy_name;
 
 	/**
 	 * The post ID to which this term belongs.
-	 * 
+	 *
 	 * @since 0.1
-	 * 
+	 *
 	 * @var int
 	 */
 	protected $post_id;
 
 	/**
 	 * Setting up the taxonomy and post ID for the term.
-	 * 
+	 *
 	 * @since 0.1
 	 *
 	 * @param string $taxonomy_name The taxonomy to which this term belongs.
@@ -38,12 +38,12 @@ class Easy_Primary_Term {
 	 */
 	public function __construct( $taxonomy_name, $post_id ) {
 		$this->taxonomy_name = $taxonomy_name;
-		$this->post_id		 = $post_id;
+		$this->post_id       = $post_id;
 	}
 
 	/**
 	 * Returns the primary term ID.
-	 * 
+	 *
 	 * @since 0.1
 	 *
 	 * @return int|bool Primary Term ID or false if no Primary Term.
@@ -53,7 +53,7 @@ class Easy_Primary_Term {
 
 		$terms = $this->get_terms();
 
-		if ( !in_array( $primary_term, wp_list_pluck( $terms, 'term_id' ) ) ) {
+		if ( ! in_array( $primary_term, wp_list_pluck( $terms, 'term_id' ) ) ) {
 			$primary_term = false;
 		}
 
@@ -63,11 +63,11 @@ class Easy_Primary_Term {
 
 	/**
 	 * Sets the new primary term ID.
-	 * 
+	 *
 	 * @since 0.1
 	 *
 	 * @param int $new_primary_term New primary term ID.
-	 * 
+	 *
 	 * @return void
 	 */
 	public function set_primary_term( $new_primary_term ) {
@@ -77,7 +77,7 @@ class Easy_Primary_Term {
 	/**
 	 * Get the terms for the current post ID.
 	 * When $terms is not an array, set $terms to an array.
-	 * 
+	 *
 	 * @since 0.1
 	 *
 	 * @return array Return the terms for the current post ID.
@@ -85,7 +85,7 @@ class Easy_Primary_Term {
 	public function get_terms() {
 		$terms = get_the_terms( $this->post_id, $this->taxonomy_name );
 
-		if ( !is_array( $terms ) ) {
+		if ( ! is_array( $terms ) ) {
 			$terms = array();
 		}
 

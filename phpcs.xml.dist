@@ -7,6 +7,9 @@
 
 	<!-- Exclude the Node Modules directory. -->
 	<exclude-pattern>/node_modules/*</exclude-pattern>
+	
+	<!-- Exclude the tests directory. -->
+	<exclude-pattern>/tests/*</exclude-pattern>
 
 	<!-- Exclude the bin directory. -->
 	<exclude-pattern>/bin/*</exclude-pattern>
