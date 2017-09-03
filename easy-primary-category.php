@@ -1,16 +1,18 @@
 <?php
 
-/*
-  Plugin Name: Easy Primary Category
-  Plugin URI:  https://gagan0123.com/
-  Description: Allows you to choose primary category for posts and custom post types
-  Version:     1.0
-  Author:      Gagan Deep Singh
-  Author URI:  https://gagan0123.com
-  License:     GPLv2
-  License URI: https://www.gnu.org/licenses/gpl-2.0.html
-  Text Domain: easy-primary-category
-  Domain Path: /languages
+/**
+ * Plugin Name: Easy Primary Category
+ * Plugin URI:  https://gagan0123.com/
+ * Description: Allows you to choose primary category for posts and custom post types
+ * Version:     1.0
+ * Author:      Gagan Deep Singh
+ * Author URI:  https://gagan0123.com
+ * License:     GPLv2
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: easy-primary-category
+ * Domain Path: /languages
+ *
+ * @package Easy_Primary_Category
  */
 
 // If this file is called directly, abort.

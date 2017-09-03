@@ -1,4 +1,9 @@
 <?php
+/**
+ * Class to manipulate post's primary term.
+ *
+ * @package Easy_Primary_Category
+ */
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -34,7 +39,7 @@ class Easy_Primary_Term {
 	 * @since 0.1
 	 *
 	 * @param string $taxonomy_name The taxonomy to which this term belongs.
-	 * @param int    $post_id       The post ID to which this term belongs
+	 * @param int    $post_id       The post ID to which this term belongs.
 	 */
 	public function __construct( $taxonomy_name, $post_id ) {
 		$this->taxonomy_name = $taxonomy_name;
@@ -53,7 +58,7 @@ class Easy_Primary_Term {
 
 		$terms = $this->get_terms();
 
-		if ( ! in_array( $primary_term, wp_list_pluck( $terms, 'term_id' ) ) ) {
+		if ( ! in_array( $primary_term, wp_list_pluck( $terms, 'term_id' ), true ) ) {
 			$primary_term = false;
 		}
 
