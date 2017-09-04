@@ -1,4 +1,9 @@
 <?php
+/**
+ * Class to handle the admin side interactions of the plugin.
+ *
+ * @package Easy_Primary_Category
+ */
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -7,36 +12,45 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 
 	/**
-	 * Handles the admin side interactions of the plugin
+	 * Handles the admin side interactions of the plugin.
 	 *
 	 * @since 0.1
 	 */
 	class Easy_Primary_Category_Admin {
 
 		/**
-		 * The instance of the class Easy_Primary_Category_Admin
+		 * The instance of the class Easy_Primary_Category_Admin.
 		 *
 		 * @since 0.1
+		 * @access protected
+		 * @static
 		 *
 		 * @var Easy_Primary_Category_Admin
 		 */
 		protected static $instance = null;
 
-		function __construct() {
+		/**
+		 * Calls the function to register the hooks.
+		 *
+		 * @since 0.1
+		 * @access public
+		 */
+		public function __construct() {
 			$this->register_hooks();
 		}
 
 		/**
-		 * Returns the current instance of the class
+		 * Returns the current instance of the class.
 		 *
 		 * @since 0.1
+		 * @access public
 		 *
-		 * @return Easy_Primary_Category_Admin Returns the current instance of the class
+		 * @return Easy_Primary_Category_Admin Returns the current instance of the class.
 		 */
 		public static function get_instance() {
 
 			// If the single instance hasn't been set, set it now.
-			if ( null == self::$instance ) {
+			if ( null === self::$instance ) {
 				self::$instance = new self();
 			}
 
@@ -44,9 +58,10 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		}
 
 		/**
-		 * Registers the actions and filters for the Admin UI
+		 * Registers the actions and filters for the Admin UI.
 		 *
 		 * @since 0.1
+		 * @access public
 		 *
 		 * @return void
 		 */
@@ -57,15 +72,16 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		}
 
 		/**
-		 * Enqueues all the assets needed for the primary term interface
+		 * Enqueues all the assets needed for the primary term interface.
 		 *
 		 * @since 0.1
+		 * @access public
 		 *
 		 * @return void
 		 */
 		public function enqueue_scripts() {
 
-			// Return if the its not post edit or add screen
+			// Return if the its not post edit or add screen.
 			if ( ! $this->is_post_edit() ) {
 				return;
 			}
@@ -76,15 +92,15 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 				return;
 			}
 
-			// Registering our admin styles and scripts
+			// Registering our admin styles and scripts.
 			wp_register_style( 'epc-taxonomy-metabox', EPC_URL . 'admin/css/epc-taxonomy-metabox.min.css', array(), EPC_VERSION );
 			wp_register_script( 'epc-taxonomy-metabox', EPC_URL . 'admin/js/epc-taxonomy-metabox.min.js', array( 'jquery' ), EPC_VERSION, true );
 
-			// Enqueueing our admin styles and scripts
+			// Enqueueing our admin styles and scripts.
 			wp_enqueue_style( 'epc-taxonomy-metabox' );
 			wp_enqueue_script( 'epc-taxonomy-metabox' );
 
-			// Formatting taxonomies for JS
+			// Formatting taxonomies for JS.
 			$taxonomies  = array_map( array( $this, 'map_taxonomies_for_js' ), $taxonomies );
 			$data        = array(
 				'taxonomies' => $taxonomies,
@@ -93,15 +109,16 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		}
 
 		/**
-		 * Add primary term JS templates in footer
+		 * Add primary term JS templates in footer.
 		 *
 		 * @since 0.1
+		 * @access public
 		 *
 		 * @return void
 		 */
 		public function admin_footer() {
 
-			// Return if the its not post edit or add screen
+			// Return if the its not post edit or add screen.
 			if ( ! $this->is_post_edit() ) {
 				return;
 			}
@@ -119,6 +136,7 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		 * on post edit and post add screens.
 		 *
 		 * @since 0.1
+		 * @access public
 		 *
 		 * @return void
 		 */
@@ -127,9 +145,10 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		}
 
 		/**
-		 * Save the primary term for a specific taxonomy
+		 * Save the primary term for a specific taxonomy.
 		 *
 		 * @since 0.1
+		 * @access public
 		 *
 		 * @param int     $post_id  Post ID to save primary term for.
 		 * @param WP_Term $taxonomy Taxonomy to save primary term for.
@@ -147,9 +166,10 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		}
 
 		/**
-		 * Saves all selected primary terms
+		 * Saves all selected primary terms.
 		 *
 		 * @since 0.1
+		 * @access public
 		 *
 		 * @param int $post_id Post ID to save primary terms for.
 		 *
@@ -170,13 +190,14 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 
 		/**
 		 * /**
-		 * Get the id of the primary term
+		 * Get the id of the primary term.
 		 *
 		 * @since 0.1
+		 * @access protected
 		 *
 		 * @param string $taxonomy_name Taxonomy name for the term.
 		 *
-		 * @return int primary term id
+		 * @return int|bool Primary Term ID or false if no Primary Term.
 		 */
 		protected function get_primary_term( $taxonomy_name ) {
 			$primary_term = new Easy_Primary_Term( $taxonomy_name, $this->get_current_id() );
@@ -185,13 +206,14 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		}
 
 		/**
-		 * Returns all the taxonomies for which the primary term selection is enabled
+		 * Returns all the taxonomies for which the primary term selection is enabled.
 		 *
 		 * @since 0.1
 		 *
 		 * @param int $post_id Default current post ID.
 		 *
-		 * @return array
+		 * @return WP_Taxonomy[] Returns an array of taxonomies for which the primary
+		 *                       term selection is enabled.
 		 */
 		protected function get_primary_term_taxonomies( $post_id = null ) {
 
@@ -199,7 +221,14 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 				$post_id = $this->get_current_id();
 			}
 
-			if ( false !== ( $taxonomies = wp_cache_get( 'primary_term_taxonomies_' . $post_id, 'epc' ) ) ) {
+			/**
+			 * Array of taxonomies.
+			 *
+			 * @var $taxonomies WP_Taxonomy[]
+			 */
+			$taxonomies = wp_cache_get( 'primary_term_taxonomies_' . $post_id, 'epc' );
+
+			if ( false !== $taxonomies ) {
 				return $taxonomies;
 			}
 
@@ -217,7 +246,8 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		 *
 		 * @param int $post_id ID of the post.
 		 *
-		 * @return array
+		 * @return WP_Taxonomy[] Returns an array of taxonomies for which the primary
+		 *                       term selection is enabled.
 		 */
 		protected function generate_primary_term_taxonomies( $post_id ) {
 			$post_type       = get_post_type( $post_id );
@@ -239,12 +269,12 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		}
 
 		/**
-		 * Checks if the current screen is post edit or new post screen
+		 * Checks if the current screen is post edit or new post screen.
 		 *
 		 * @since 0.1
 		 *
 		 * @return bool True if its post edit or new post screen,
-		 *              False if anything else
+		 *              False if anything else.
 		 */
 		public function is_post_edit() {
 			global $pagenow;
