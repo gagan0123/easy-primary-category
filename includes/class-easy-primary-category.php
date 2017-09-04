@@ -1,4 +1,9 @@
 <?php
+/**
+ * Main class of the plugin interacting with the WordPress.
+ *
+ * @package Easy_Primary_Category
+ */
 
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -7,33 +12,50 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'Easy_Primary_Category' ) ) {
 
+	/**
+	 * Main class of the plugin interacting with the WordPress.
+	 *
+	 * @since 0.1
+	 */
 	class Easy_Primary_Category {
 
 		/**
-		 * The instance of the class Easy_Primary_Category
+		 * The instance of the class Easy_Primary_Category.
 		 *
 		 * @since 0.1
+		 * @access protected
+		 * @static
 		 *
 		 * @var Easy_Primary_Category
 		 */
 		protected static $instance = null;
 
-		function __construct() {
+		/**
+		 * Calls the register_hooks function and require_files function.
+		 *
+		 * @since 0.1
+		 * @access public
+		 *
+		 * @return void
+		 */
+		public function __construct() {
 			$this->register_hooks();
 			$this->require_files();
 		}
 
 		/**
-		 * Returns the current instance of the class
+		 * Returns the current instance of the class.
 		 *
 		 * @since 0.1
+		 * @access public
+		 * @static
 		 *
-		 * @return Easy_Primary_Category Returns the current instance of the class
+		 * @return Easy_Primary_Category Returns the current instance of the class.
 		 */
 		public static function get_instance() {
 
 			// If the single instance hasn't been set, set it now.
-			if ( null == self::$instance ) {
+			if ( null === self::$instance ) {
 				self::$instance = new self();
 			}
 
@@ -41,9 +63,10 @@ if ( ! class_exists( 'Easy_Primary_Category' ) ) {
 		}
 
 		/**
-		 * Requires the necessary files for the plugin
+		 * Requires the necessary files for the plugin.
 		 *
 		 * @since 0.1
+		 * @access public
 		 *
 		 * @return void
 		 */
@@ -51,6 +74,8 @@ if ( ! class_exists( 'Easy_Primary_Category' ) ) {
 			require_once EPC_PATH . 'includes/class-easy-primary-term.php';
 			require_once EPC_PATH . 'includes/class-easy-primary-frontend.php';
 			require_once EPC_PATH . 'includes/frontend-wrappers.php';
+
+			// Lets be nice with WP_CLI.
 			if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				require_once EPC_PATH . 'includes/class-easy-primary-cli.php';
 				WP_CLI::add_command( 'primary-category', 'Easy_Primary_CLI' );
@@ -58,9 +83,10 @@ if ( ! class_exists( 'Easy_Primary_Category' ) ) {
 		}
 
 		/**
-		 * Registers the actions and filters for the plugin
+		 * Registers the actions and filters for the plugin.
 		 *
 		 * @since 0.1
+		 * @access public
 		 *
 		 * @return void
 		 */
@@ -69,9 +95,10 @@ if ( ! class_exists( 'Easy_Primary_Category' ) ) {
 		}
 
 		/**
-		 * Filters post_link_category to change the category to the chosen category by the user
+		 * Filters post_link_category to change the category to the chosen category by the user.
 		 *
 		 * @since 0.1
+		 * @access public
 		 *
 		 * @param stdClass $category The category that is now used for the post link.
 		 * @param array    $categories This parameter is not used.
@@ -91,9 +118,10 @@ if ( ! class_exists( 'Easy_Primary_Category' ) ) {
 		}
 
 		/**
-		 * Get the id of the primary category
+		 * Get the id of the primary category.
 		 *
 		 * @since 0.1
+		 * @access protected
 		 *
 		 * @param WP_Post $post The post in question.
 		 *
@@ -102,7 +130,7 @@ if ( ! class_exists( 'Easy_Primary_Category' ) ) {
 		protected function get_primary_category( $post = null ) {
 			$post = get_post( $post );
 
-			if ( $post === null ) {
+			if ( null === $post ) {
 				return false;
 			}
 
