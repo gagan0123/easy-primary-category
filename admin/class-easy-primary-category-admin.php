@@ -93,8 +93,8 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 			}
 
 			// Registering our admin styles and scripts.
-			wp_register_style( 'epc-taxonomy-metabox', EPC_URL . 'admin/css/epc-taxonomy-metabox.min.css', array(), EPC_VERSION );
-			wp_register_script( 'epc-taxonomy-metabox', EPC_URL . 'admin/js/epc-taxonomy-metabox.min.js', array( 'jquery' ), EPC_VERSION, true );
+			wp_register_style( 'epc-taxonomy-metabox', EPC_URL . 'admin/css/epc-taxonomy-metabox.min.css', array(), EPC_ASSETS_VERSION );
+			wp_register_script( 'epc-taxonomy-metabox', EPC_URL . 'admin/js/epc-taxonomy-metabox.min.js', array( 'jquery' ), EPC_ASSETS_VERSION, true );
 
 			// Enqueueing our admin styles and scripts.
 			wp_enqueue_style( 'epc-taxonomy-metabox' );
