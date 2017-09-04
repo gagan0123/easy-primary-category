@@ -45,7 +45,7 @@ if ( ! defined( 'EPC_ASSETS_VERSION' ) ) {
 	 *
 	 * @since 1.1
 	 */
-	define( 'EPC_ASSETS_VERSION', '1.1' );
+	define( 'EPC_ASSETS_VERSION', '1.0' );
 }
 
 /**
