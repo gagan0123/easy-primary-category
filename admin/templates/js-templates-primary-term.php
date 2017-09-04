@@ -1,13 +1,15 @@
 <?php
+/**
+ * Underscore.js style template for buttons and input fields
+ * to be included on post add and edit screens.
+ *
+ * @package Easy_Primary_Category
+ */
+
 // If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
-
-/**
- * Underscore.js style template for buttons and input fields
- * to be included on post add and edit screens
- */
 ?>
 
 <script type="text/html" id="tmpl-primary-term-input">
@@ -27,7 +29,7 @@ printf(
 			/* translators: accessibility text. %1$s expands to the term title, %2$s to the taxonomy title. */
 			__( 'Make %1$s primary %2$s', 'easy-primary-category' ), '{{data.term}}', '{{data.taxonomy.title}}'
 		)
-	), __( 'Make primary', 'easy-primary-category' )
+	), esc_html__( 'Make primary', 'easy-primary-category' )
 );
 ?>
 
