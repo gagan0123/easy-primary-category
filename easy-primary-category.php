@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: Easy Primary Category
  * Plugin URI:  https://gagan0123.com/

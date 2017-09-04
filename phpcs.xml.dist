@@ -25,5 +25,15 @@
 
 	<!-- Include the WordPress standards. -->
 	<rule ref="WordPress" />
+	
+	<!-- We need that query -->
+	<rule ref="WordPress.VIP.SlowDBQuery.slow_db_query_meta_query">
+		<exclude-pattern>class-easy-primary-frontend.php</exclude-pattern>
+	</rule>
+	
+	<!-- Function is being used within a caching function. -->
+	<rule ref="WordPress.VIP.RestrictedFunctions.term_exists_term_exists">
+		<exclude-pattern>class-easy-primary-frontend.php</exclude-pattern>
+	</rule>
 
 </ruleset>
