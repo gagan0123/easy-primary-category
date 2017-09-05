@@ -1,11 +1,10 @@
 bin
 .gitlab-ci.yml
 phpunit.xml.dist
-phpunit.xml
+phpcs.xml.dist
 tests
 .git
 .gitignore
-.gitattributes
 README.md
 readme.sh
 .DS_Store
@@ -14,3 +13,4 @@ node_modules
 .sass-cache
 package-lock.json
 package.json
+assets
