@@ -2,6 +2,7 @@
 
 # Easy Primary Category #
 **Contributors:** [gagan0123](https://profiles.wordpress.org/gagan0123)  
+**Donate Link:** PayPal.me/gagan0123  
 **Tags:** category, primary  
 **Requires at least:** 4.5  
 **Tested up to:** 4.8.1  
