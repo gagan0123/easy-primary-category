@@ -5,7 +5,7 @@ Tags: category, primary
 Requires at least: 4.5
 Requires PHP: 5.6
 Tested up to: 5.1
-Stable tag: 1.2
+Stable tag: 1.1.1
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,7 +58,7 @@ Want to contribute to Easy Primary Category? That would be awesome!
 
 == Changelog ==
 
-= 1.2 =
+= 1.1.1 =
 * Made code WordPress coding standards compatible.
 * Tested with latest version of WordPress.
 
