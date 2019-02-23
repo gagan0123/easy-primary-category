@@ -101,8 +101,8 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 			wp_enqueue_script( 'epc-taxonomy-metabox' );
 
 			// Formatting taxonomies for JS.
-			$taxonomies  = array_map( array( $this, 'map_taxonomies_for_js' ), $taxonomies );
-			$data        = array(
+			$taxonomies = array_map( array( $this, 'map_taxonomies_for_js' ), $taxonomies );
+			$data       = array(
 				'taxonomies' => $taxonomies,
 			);
 			wp_localize_script( 'epc-taxonomy-metabox', 'easyPrimaryCategory', $data );
@@ -250,9 +250,9 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		 *                       term selection is enabled.
 		 */
 		protected function generate_primary_term_taxonomies( $post_id ) {
-			$post_type       = get_post_type( $post_id );
-			$all_taxonomies  = get_object_taxonomies( $post_type, 'objects' );
-			$all_taxonomies  = array_filter( $all_taxonomies, array( $this, 'filter_hierarchical_taxonomies' ) );
+			$post_type      = get_post_type( $post_id );
+			$all_taxonomies = get_object_taxonomies( $post_type, 'objects' );
+			$all_taxonomies = array_filter( $all_taxonomies, array( $this, 'filter_hierarchical_taxonomies' ) );
 
 			/**
 			 * Filters which taxonomies for which the user can choose the primary term.
@@ -320,10 +320,10 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 			}
 
 			return array(
-				'title'      => $taxonomy->labels->singular_name,
-				'name'       => $taxonomy->name,
-				'primary'    => $primary_term,
-				'terms'      => array_map( array( $this, 'map_terms_for_js' ), get_terms( $taxonomy->name ) ),
+				'title'   => $taxonomy->labels->singular_name,
+				'name'    => $taxonomy->name,
+				'primary' => $primary_term,
+				'terms'   => array_map( array( $this, 'map_terms_for_js' ), get_terms( $taxonomy->name ) ),
 			);
 		}
 
@@ -338,8 +338,8 @@ if ( ! class_exists( 'Easy_Primary_Category_Admin' ) ) {
 		 */
 		private function map_terms_for_js( $term ) {
 			return array(
-				'id'     => $term->term_id,
-				'name'   => $term->name,
+				'id'   => $term->term_id,
+				'name' => $term->name,
 			);
 		}
 

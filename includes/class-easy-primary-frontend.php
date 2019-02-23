@@ -76,8 +76,8 @@ if ( ! class_exists( 'Easy_Primary_Frontend' ) ) {
 			);
 
 			$meta_query = array(
-				'key'    => 'epc_primary_category',
-				'value'  => $term_id,
+				'key'   => 'epc_primary_category',
+				'value' => $term_id,
 			);
 
 			$args               = wp_parse_args( $args, $defaults );
@@ -107,8 +107,8 @@ if ( ! class_exists( 'Easy_Primary_Frontend' ) ) {
 		 */
 		private function term_exists( $term, $taxonomy = '' ) {
 
-			$cache_key   = 'primary_term_exists_' . $term . '_' . $taxonomy;
-			$return      = wp_cache_get( $cache_key, 'epc' );
+			$cache_key = 'primary_term_exists_' . $term . '_' . $taxonomy;
+			$return    = wp_cache_get( $cache_key, 'epc' );
 
 			if ( false === $return ) {
 				$return = term_exists( $term, $taxonomy );

@@ -24,12 +24,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 <script type="text/html" id="tmpl-primary-term-ui">
 <?php
 printf(
-	'<button type="button" class="easy-make-primary-term" aria-label="%1$s">%2$s</button>', esc_attr(
+	'<button type="button" class="easy-make-primary-term" aria-label="%1$s">%2$s</button>',
+	esc_attr(
 		sprintf(
 			/* translators: accessibility text. %1$s expands to the term title, %2$s to the taxonomy title. */
-			__( 'Make %1$s primary %2$s', 'easy-primary-category' ), '{{data.term}}', '{{data.taxonomy.title}}'
+			__( 'Make %1$s primary %2$s', 'easy-primary-category' ),
+			'{{data.term}}',
+			'{{data.taxonomy.title}}'
 		)
-	), esc_html__( 'Make primary', 'easy-primary-category' )
+	),
+	esc_html__( 'Make primary', 'easy-primary-category' )
 );
 ?>
 
@@ -42,7 +46,8 @@ printf(
 		echo esc_html(
 			sprintf(
 				/* translators: %s is the taxonomy title. This will be shown to screenreaders */
-				 '(' . __( 'Primary %s', 'easy-primary-category' ) . ')', '{{data.taxonomy.title}}'
+				 '(' . __( 'Primary %s', 'easy-primary-category' ) . ')',
+				'{{data.taxonomy.title}}'
 			)
 		);
 		?>
