@@ -12,6 +12,8 @@ Allows you to choose primary category for posts and custom post types.
 
 == Description ==
 
+**Notice: Currently works only with WordPress Classic Editor, not Gutenberg compatible**
+
 Allows you to choose primary category for posts and custom post types.
 
 When the permalink structure includes category, the category marked as Primary, will be used for generating the permalink of the post.
@@ -54,6 +56,10 @@ Want to contribute to Easy Primary Category? That would be awesome!
 1. Click the "Make Primary" button to mark the category as primary.
 
 == Changelog ==
+
+= 1.2 =
+* Made code WordPress coding standards compatible.
+* Tested with latest version of WordPress.
 
 = 1.1 =
 * Escaping some output values.
