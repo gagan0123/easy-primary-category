@@ -14,9 +14,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <script type="text/html" id="tmpl-primary-term-input">
 	<input type="hidden" class="easy-primary-term"
-		   id="easy-primary-{{data.taxonomy.name}}"
-		   name="epc_primary_{{data.taxonomy.name}}_term"
-		   value="{{data.taxonomy.primary}}">
+			id="easy-primary-{{data.taxonomy.name}}"
+			name="epc_primary_{{data.taxonomy.name}}_term"
+			value="{{data.taxonomy.primary}}">
 
 	<?php wp_nonce_field( 'save-primary-term', 'epc_primary_{{data.taxonomy.name}}_nonce' ); ?>
 </script>
@@ -46,7 +46,7 @@ printf(
 		echo esc_html(
 			sprintf(
 				/* translators: %s is the taxonomy title. This will be shown to screenreaders */
-				 '(' . __( 'Primary %s', 'easy-primary-category' ) . ')',
+				'(' . __( 'Primary %s', 'easy-primary-category' ) . ')',
 				'{{data.taxonomy.title}}'
 			)
 		);

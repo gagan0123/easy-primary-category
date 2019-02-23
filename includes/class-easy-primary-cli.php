@@ -31,11 +31,13 @@ if ( ! class_exists( 'Easy_Primary_CLI' ) ) {
 		 *
 		 * @since 0.1
 		 *
+		 * @access public
+		 *
 		 * @subcommand get-primary-posts
 		 *
 		 * @param array $args Arguments array, containing the Term ID to be fetched.
 		 */
-		function get_primary_posts( $args ) {
+		public function get_primary_posts( $args ) {
 			if ( isset( $args[0] ) && is_numeric( $args[0] ) ) {
 				$term_id = intval( $args[0] );
 			} else {
