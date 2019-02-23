@@ -41,5 +41,13 @@
 		<exclude-pattern>class-easy-primary-frontend.php</exclude-pattern>
 	</rule>
 
+    <!-- Minimum WordPress supported check. -->
+    <config name="minimum_supported_wp_version" value="4.5"/>
+    
+    <rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array" value="easy-primary-category"/>
+		</properties>
+	</rule>
 
 </ruleset>
