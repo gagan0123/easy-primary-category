@@ -2,6 +2,16 @@
 <ruleset name="Easy Primary Category Ruleset">
 	<description>Coding Rules for Easy Primary Category project</description>
 
+    <!-- Pass some flags to PHPCS:
+		 p flag: Show progress of the run.
+		 s flag: Show sniff codes in all reports.
+		 v flag: Print verbose output.
+	-->
+	<arg value="psv"/>
+	
+	<!-- Check all files in this directory and the directories below it. -->
+	<file>.</file>
+
 	<!-- Exclude index.php files kept only to prevent directory listing. -->
 	<exclude-pattern>*/index.php</exclude-pattern>
 
@@ -27,13 +37,9 @@
 	<rule ref="WordPress" />
 	
 	<!-- We need that query -->
-	<rule ref="WordPress.VIP.SlowDBQuery.slow_db_query_meta_query">
+	<rule ref="WordPress.DB.SlowDBQuery.slow_db_query_meta_query">
 		<exclude-pattern>class-easy-primary-frontend.php</exclude-pattern>
 	</rule>
-	
-	<!-- Function is being used within a caching function. -->
-	<rule ref="WordPress.VIP.RestrictedFunctions.term_exists_term_exists">
-		<exclude-pattern>class-easy-primary-frontend.php</exclude-pattern>
-	</rule>
+
 
 </ruleset>
