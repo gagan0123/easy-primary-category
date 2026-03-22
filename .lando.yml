@@ -1,0 +1,65 @@
+name: easy-primary-category
+recipe: wordpress
+config:
+  php: "8.2"
+  webroot: wordpress
+  # Keep it empty, to enable xdebug use `lando xdebug <xdebug mode>` instead
+  xdebug: ""
+  config:
+    php: .lando/php.ini
+    database: .lando/mysql.cnf
+services:
+  node:
+    type: node:22
+    overrides:
+      environment:
+        NODE_ENV: "development"
+  appserver:
+    overrides:
+      environment:
+        # Support debugging with XDEBUG.
+        PHP_IDE_CONFIG: "serverName=appserver"
+        PROFILER_OUTPUT_DIR: "profiler-output" # If changing this value, change in .gitignore also
+      volumes:
+        - '.lando/wp-cli.yml:/wp-cli.yml'
+        - '.:/app/wordpress/wp-content/plugins/easy-primary-category'
+        # Exclude directories that would cause infinite recursion or don't
+        # belong inside the plugin directory in WordPress.
+        - '/app/wordpress/wp-content/plugins/easy-primary-category/wordpress'
+        - '/app/wordpress/wp-content/plugins/easy-primary-category/node_modules'
+        - '/app/wordpress/wp-content/plugins/easy-primary-category/vendor'
+    build:
+      - wp core download --force --skip-content
+    run:
+      - sleep 5 # Wait for the database service to be ready.
+      - | # Create WordPress config file and add necessary constants
+        wp config create --dbhost=database --dbname=wordpress --dbuser=wordpress --dbpass=wordpress --dbprefix=wp_ --force
+      - wp config set WP_DISABLE_FATAL_ERROR_HANDLER true --raw
+      - wp config set WP_DEBUG true --raw
+      - wp config set WP_DEBUG_LOG true --raw
+      - wp config set WP_DEBUG_DISPLAY false --raw
+      - wp config set AUTOMATIC_UPDATER_DISABLED true --raw
+      - wp config set DISALLOW_FILE_EDIT true --raw
+      - wp config set WP_ENVIRONMENT_TYPE 'local'
+      - | # Install WordPress if not already installed
+        if ! wp core is-installed; then
+          wp core install --url=https://$LANDO_APP_NAME.$LANDO_DOMAIN \
+            --title=$LANDO_APP_NAME \
+            --admin_user=admin \
+            --admin_password=password \
+            --admin_email=me@gagan.pro \
+            --skip-email
+          wp theme install --activate twentytwentyfive
+        fi
+tooling:
+  xdebug:
+    description: Loads Xdebug in the selected mode.
+    cmd:
+      - appserver: /app/.lando/xdebug.sh
+    user: root
+  node:
+    service: node
+  npm:
+    service: node
+  grunt:
+    service: node
