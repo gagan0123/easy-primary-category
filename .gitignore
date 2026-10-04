@@ -4,3 +4,4 @@ vendor/
 /profiler-output/
 .sass-cache/
 .DS_Store
+.lando.local.yml
